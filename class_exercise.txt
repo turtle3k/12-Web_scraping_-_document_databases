@@ -1,0 +1,58 @@
+Student Exercise
+use Class DB
+db.createCollection("students")
+show collections
+db.students.insert({"name": "Tim"},{"favoriteLibrary": "Pandas"},{"age": "21"},{"hobbies": "data analytics"})
+db.students.insert({"name": "Tommy"},{"favoriteLibrary": "Matplotlib"},{"age": "30"},{"hobbies": "monster trucks"})
+db.students.insert({"name": "Gabbyy"},{"favoriteLibrary": "Flask"},{"age": "25"},{"hobbies": "food tasting"})
+db.students.find().pretty()
+db.students.find({"age" : "25"})
+
+db.students.insert({"name": "Tim", "favoriteLibrary": "Pandas", "age": "21", "hobbies": ["data analytics", "watching kids sports"]})
+db.students.insert({"name": "Tommy", "favoriteLibrary": "Matplotlib", "age": "30", "hobbies": ["monster trucks", "walking the dog"]})
+db.students.insert({"name": "Gabby", "favoriteLibrary": "Flask", "age": "25", "hobbies": ["food tasting", "playing with cats"]})
+
+db.students.find({"name": "Tim"})
+
+
+NEXT EXERCISE
+change/use a difft database:
+use travel_db
+
+inserting stuff (as before)
+db.destinations.insert ({stuff})
+
+change/update a record:   (there is also $unset - to remove the key)
+db destinations.update({"country": "Egypt"}, {$set: {"continetnt": "Antartica"}})
+
+<<if an array/list -  do push to add to that list (of the key value pair).  can also do pop>>
+
+update more than 1 record:
+db.destinations.update({"continent": "Africa"}, {$set: {"continent": "Antartica"}}, {multi: true})
+db.destinations.updateMany({  same as above, but skip the multi  })
+
+add to a record (list):
+db.destinations.update({"country": "Morocco"}, {$push: {"major_cities": "Agadir"}})
+
+Update OR (if not exist) Insert:
+db.destinations.update({"country": "Canada"}, {$set: {"capital" : "Ottowa"}}, {upsert: true})
+
+Delete/remove:
+db.destinations.remove({"country": "Morocco"}, {justOne: true})
+
+remove all the records:
+db.destinations.remove({})
+
+Remove the collection:
+db.destinations.drop()
+show collections      (none will be left)
+
+Remove the whole database:
+db.dropDatabase()
+
+
+DUMPSTER DB EXERCISE
+use Dumpster_DB
+db.divers.insert({"name": "Tim", "yearsDiving": 5, "stillDiving": "True", "bestFinds": ["gold", "sunken ship"]})
+db.divers.insert({"name": "Joe", "yearsDiving": 10, "stillDiving": "True", "bestFinds": ["comb", "abc gum"]})
+db.divers.insert({"name": "Jane", "yearsDiving": 25, "stillDiving": "False", "bestFinds": ["tacos", "Atlantis"]})
