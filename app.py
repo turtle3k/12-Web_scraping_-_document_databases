@@ -1,6 +1,9 @@
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 import scrape_mars
+from splinter import Browser
+# executable_path = {'executable_path': 'chromedriver.exe'}
+# browser = Browser('chrome', **executable_path, headless=False)
 
 app = Flask(__name__)
 

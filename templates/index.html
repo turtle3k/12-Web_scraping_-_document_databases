@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/style.css">
 </head>
 
 <body>
@@ -21,37 +22,53 @@
     <div class="row" id="mars news">
       <div class="col-md-12">
         <h2><b>Latest Mars News</b></h2>
-        <h4 class="heading"><b>{{scraped_data.title}}</b></h4>
-        <small>{{scraped_data.paragraph}}</small>
+        <h4 class="heading"><b>{{scraped_data.news_title}}</b></h4>
+        <small>{{scraped_data.news_p}}</small>
       </div>
     </div>
-
+    <br>
     <!-- Put sections 2, 3, & 4 in a row here
          first column is the featured image
          second column has 2 rows, curent Mars weather first, the
          the Mars facts table second -->
     <div class="row">
       <!-- Mars featured image here -->
-      <div class="col-md-9">
+      <div class="col-md-8">
 
         <!-- **replace w/ actual Header, image, formating, styling, etc.-->
+        <h2><b>Featured Mars Image</b></h2>
+        <img src={{scraped_data.featured_image_url}} class="img-fluid" alt="featured_image" , width=100%>
+
 
       </div>
+      <br>
       <!-- weather and facts column -->
-      <div class="col-md-3">
+      <div class="col-md-4">
         <!-- First row for weather tweet -->
         <div class="row">
-          
+
           <!-- **replace w/ col? Header, tweet info, styling, etc.-->
+          <div class="col-md-12">
+            <div class="box">
+              <h4><b>Current Weather on Mars</b></h4>
+              {{scraped_data.mars_weather}}
+            </div>
+          </div>
 
         </div>
         <!-- Second row for facts data table -->
         <div class="row">
 
           <!-- **replace w/ col? Header, facts info, styling, etc.-->
-
+          <!-- Note to self, see following article for use of |safe to tell jinga to show this param as an html table -->
+          <!--https://sarahleejane.github.io/learning/python/2015/08/09/simple-tables-in-webapps-using-flask-and-pandas-with-python.html-->
+          <div class="col-md-12">
+            <h4><b>Mars Facts</b></h4>
+            <table border="1" class="dataframe">
+              {{scraped_data.facts_html|safe}}
+            </table>
+          </div>
         </div>
-
       </div>
 
     </div>
@@ -59,11 +76,49 @@
     <div class="row">
 
       <!-- **replace w/ Header, grid for pics, styling, etc.-->
-
+      <br><br>
+      <h4 class="center"><b>Mars Hemispheres</b></h4>
+      <hr>
     </div>
-  
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <img src={{scraped_data.hemisphere_list[0]['img_url']}} alt='Hemisphere_image' , width=100%>
+          <div class="caption">
+            <h4><b>{{scraped_data.hemisphere_list[0]['title']}}</b></h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="thumbnail">
+          <img src={{scraped_data.hemisphere_list[1]['img_url']}} alt='Hemisphere_image' , width=100%>
+          <div class="caption">
+            <h4><b>{{scraped_data.hemisphere_list[1]['title']}}</b></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="thumbnail">
+              <img src={{scraped_data.hemisphere_list[2]['img_url']}} alt='Hemisphere_image' , width=100%>
+              <div class="caption">
+                <h4><b>{{scraped_data.hemisphere_list[2]['title']}}</b></h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="thumbnail">
+              <img src={{scraped_data.hemisphere_list[3]['img_url']}} alt='Hemisphere_image' , width=100%>
+              <div class="caption">
+                <h4><b>{{scraped_data.hemisphere_list[3]['title']}}</b></h4>
+              </div>
+            </div>
+          </div>
+    </div>
+
   </div>
+
 </body>
 
 </html>
-

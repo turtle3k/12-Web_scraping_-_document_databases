@@ -2,7 +2,7 @@
 import pandas as pd
 from bs4 import BeautifulSoup as bs
 import requests
-from splinter import browser
+from splinter import Browser
 import time
 
 
@@ -15,6 +15,7 @@ def init_browser():
 def scrape():
     # Setup a dictionary to hold all the scraped data
     scraped_data = {}
+    browser = init_browser()
 
     # ### Site 1 - NASA Mars News
     news_url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
@@ -131,7 +132,7 @@ def scrape():
         hemisphere_list.append(hemisphere)
         browser.back()
 
-    #print(hemisphere_list)
+    print(hemisphere_list)
     scraped_data['hemisphere_list'] = hemisphere_list
 
     return scraped_data
